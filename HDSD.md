@@ -23,15 +23,14 @@ Dưới đây là hướng dẫn chi tiết cách chạy và kiểm thử projec
 
 Mở terminal (PowerShell hoặc Command Prompt) tại thư mục gốc của project `c:\Dev_Uni\Shipping_DSA`.
 
-*(Tùy chọn)* Cài đặt các thư viện bổ trợ từ [requirements.txt](file:///c:/Dev_Uni/Shipping_DSA/requirements.txt):
+*(Tùy chọn)* Cài đặt các thư viện bổ trợ từ [requirements.txt]():
 ```bash
 pip install -r requirements.txt
 ```
-> **Lưu ý:** Thuật toán cốt lõi ([DSU](file:///c:/Dev_Uni/Shipping_DSA/src/algorithms/dsu.py), [Kruskal](file:///c:/Dev_Uni/Shipping_DSA/src/algorithms/kruskal.py), [Min-Heap](file:///c:/Dev_Uni/Shipping_DSA/src/algorithms/min_heap.py), [Prim](file:///c:/Dev_Uni/Shipping_DSA/src/algorithms/prim.py), và [Graph](file:///c:/Dev_Uni/Shipping_DSA/src/core/graph.py)) được lập trình thuần bằng thư viện chuẩn của Python, nên bạn có thể chạy ngay với Python có sẵn mà không bắt buộc phải cài thêm gói bên ngoài.
 
 ---
 
-### 2. Chạy chương trình chính ([src/main.py](file:///c:/Dev_Uni/Shipping_DSA/src/main.py))
+### 2. Chạy chương trình chính ([src/main.py]())
 
 Chương trình chính sẽ nạp đồ thị, thực thi cả 2 thuật toán **Kruskal (DSU)** và **Prim (Min-Heap)**, so sánh chi phí, số cạnh được chọn và thời gian thực thi.
 
@@ -62,7 +61,7 @@ Bạn có thể chỉ định file JSON trong thư mục `data/` qua cờ `--dat
 
 ---
 
-### 3. Sinh / Tái tạo dữ liệu mẫu ([dataset_generator.py](file:///c:/Dev_Uni/Shipping_DSA/src/generators/dataset_generator.py))
+### 3. Sinh / Tái tạo dữ liệu mẫu ([dataset_generator.py]())
 
 Nếu muốn tạo lại các file dữ liệu mạng lưới (JSON và CSV) trong thư mục `data/`:
 ```bash
@@ -78,11 +77,11 @@ Lệnh này sẽ tự động tạo:
 ### 4. Chạy Unit Test kiểm tra tính đúng đắn
 
 Project có sẵn bộ 19 bài kiểm thử bao phủ toàn bộ cấu trúc dữ liệu và thuật toán:
-- [test_dsu.py](file:///c:/Dev_Uni/Shipping_DSA/tests/test_dsu.py): Kiểm tra Disjoint Set Union (Union by rank, Path compression).
-- [test_min_heap.py](file:///c:/Dev_Uni/Shipping_DSA/tests/test_min_heap.py): Kiểm tra Min-Heap.
-- [test_graph.py](file:///c:/Dev_Uni/Shipping_DSA/tests/test_graph.py): Kiểm tra cấu trúc Graph, nạp/xuất JSON, CSV.
-- [test_kruskal.py](file:///c:/Dev_Uni/Shipping_DSA/tests/test_kruskal.py): Kiểm tra thuật toán Kruskal.
-- [test_prim.py](file:///c:/Dev_Uni/Shipping_DSA/tests/test_prim.py): Kiểm tra thuật toán Prim.
+- [test_dsu.py](): Kiểm tra Disjoint Set Union (Union by rank, Path compression).
+- [test_min_heap.py](): Kiểm tra Min-Heap.
+- [test_graph.py](): Kiểm tra cấu trúc Graph, nạp/xuất JSON, CSV.
+- [test_kruskal.py](): Kiểm tra thuật toán Kruskal.
+- [test_prim.py](): Kiểm tra thuật toán Prim.
 
 Chạy toàn bộ unit tests bằng lệnh:
 ```bash
