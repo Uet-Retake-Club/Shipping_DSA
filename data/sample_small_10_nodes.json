@@ -1,0 +1,196 @@
+{
+  "network_name": "Metro_Logistics_Small_10",
+  "description": "Sample metropolitan logistics network with 1 Central Hub, 3 Warehouses, and 6 Delivery Stations",
+  "num_nodes": 10,
+  "num_edges": 16,
+  "nodes": [
+    {
+      "id": "H0",
+      "name": "Central Hub (Long Bien)",
+      "type": "hub",
+      "x": 50.0,
+      "y": 50.0,
+      "lat": 21.037,
+      "lon": 105.89
+    },
+    {
+      "id": "W1",
+      "name": "North Warehouse (Dong Anh)",
+      "type": "warehouse",
+      "x": 50.0,
+      "y": 85.0,
+      "lat": 21.137,
+      "lon": 105.85
+    },
+    {
+      "id": "W2",
+      "name": "West Warehouse (Cau Giay)",
+      "type": "warehouse",
+      "x": 15.0,
+      "y": 50.0,
+      "lat": 21.033,
+      "lon": 105.795
+    },
+    {
+      "id": "W3",
+      "name": "South Warehouse (Hoang Mai)",
+      "type": "warehouse",
+      "x": 60.0,
+      "y": 15.0,
+      "lat": 20.97,
+      "lon": 105.86
+    },
+    {
+      "id": "D1",
+      "name": "Station Soc Son",
+      "type": "delivery_point",
+      "x": 45.0,
+      "y": 105.0,
+      "lat": 21.26,
+      "lon": 105.83
+    },
+    {
+      "id": "D2",
+      "name": "Station Me Linh",
+      "type": "delivery_point",
+      "x": 75.0,
+      "y": 90.0,
+      "lat": 21.17,
+      "lon": 105.72
+    },
+    {
+      "id": "D3",
+      "name": "Station Nam Tu Liem",
+      "type": "delivery_point",
+      "x": 5.0,
+      "y": 60.0,
+      "lat": 21.01,
+      "lon": 105.76
+    },
+    {
+      "id": "D4",
+      "name": "Station Ha Dong",
+      "type": "delivery_point",
+      "x": 10.0,
+      "y": 30.0,
+      "lat": 20.97,
+      "lon": 105.77
+    },
+    {
+      "id": "D5",
+      "name": "Station Thanh Tri",
+      "type": "delivery_point",
+      "x": 55.0,
+      "y": 0.0,
+      "lat": 20.93,
+      "lon": 105.84
+    },
+    {
+      "id": "D6",
+      "name": "Station Gia Lam",
+      "type": "delivery_point",
+      "x": 85.0,
+      "y": 45.0,
+      "lat": 21.02,
+      "lon": 105.93
+    }
+  ],
+  "edges": [
+    {
+      "u": "H0",
+      "v": "W1",
+      "weight": 35.0,
+      "road_type": "highway"
+    },
+    {
+      "u": "H0",
+      "v": "W2",
+      "weight": 35.0,
+      "road_type": "highway"
+    },
+    {
+      "u": "H0",
+      "v": "W3",
+      "weight": 36.4,
+      "road_type": "highway"
+    },
+    {
+      "u": "W1",
+      "v": "W2",
+      "weight": 59.4,
+      "road_type": "arterial"
+    },
+    {
+      "u": "W2",
+      "v": "W3",
+      "weight": 68.41,
+      "road_type": "arterial"
+    },
+    {
+      "u": "D1",
+      "v": "W1",
+      "weight": 24.74,
+      "road_type": "arterial"
+    },
+    {
+      "u": "D2",
+      "v": "W1",
+      "weight": 38.25,
+      "road_type": "urban"
+    },
+    {
+      "u": "D1",
+      "v": "D2",
+      "weight": 50.31,
+      "road_type": "urban"
+    },
+    {
+      "u": "D3",
+      "v": "W2",
+      "weight": 21.21,
+      "road_type": "urban"
+    },
+    {
+      "u": "D4",
+      "v": "W2",
+      "weight": 24.74,
+      "road_type": "arterial"
+    },
+    {
+      "u": "D3",
+      "v": "D4",
+      "weight": 45.62,
+      "road_type": "urban"
+    },
+    {
+      "u": "D5",
+      "v": "W3",
+      "weight": 18.97,
+      "road_type": "arterial"
+    },
+    {
+      "u": "D6",
+      "v": "W3",
+      "weight": 58.57,
+      "road_type": "urban"
+    },
+    {
+      "u": "D6",
+      "v": "H0",
+      "weight": 42.43,
+      "road_type": "arterial"
+    },
+    {
+      "u": "D4",
+      "v": "W3",
+      "weight": 78.3,
+      "road_type": "urban"
+    },
+    {
+      "u": "D6",
+      "v": "W1",
+      "weight": 79.72,
+      "road_type": "urban"
+    }
+  ]
+}

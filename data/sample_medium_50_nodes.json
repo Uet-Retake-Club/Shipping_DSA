@@ -1,0 +1,1170 @@
+{
+  "network_name": "Regional_Logistics_Medium_50",
+  "description": "Synthetic clustered delivery network with 50 nodes",
+  "num_nodes": 50,
+  "num_edges": 135,
+  "nodes": [
+    {
+      "id": "N0",
+      "name": "Hub_C0",
+      "type": "hub",
+      "x": 93.33,
+      "y": 105.52
+    },
+    {
+      "id": "N1",
+      "name": "Warehouse_C0",
+      "type": "warehouse",
+      "x": 99.63,
+      "y": 97.08
+    },
+    {
+      "id": "N2",
+      "name": "DeliveryPoint_N2",
+      "type": "delivery_point",
+      "x": 76.56,
+      "y": 132.99
+    },
+    {
+      "id": "N3",
+      "name": "DeliveryPoint_N3",
+      "type": "delivery_point",
+      "x": 93.39,
+      "y": 107.58
+    },
+    {
+      "id": "N4",
+      "name": "DeliveryPoint_N4",
+      "type": "delivery_point",
+      "x": 79.24,
+      "y": 111.48
+    },
+    {
+      "id": "N5",
+      "name": "DeliveryPoint_N5",
+      "type": "delivery_point",
+      "x": 82.21,
+      "y": 97.69
+    },
+    {
+      "id": "N6",
+      "name": "DeliveryPoint_N6",
+      "type": "delivery_point",
+      "x": 77.75,
+      "y": 141.22
+    },
+    {
+      "id": "N7",
+      "name": "DeliveryPoint_N7",
+      "type": "delivery_point",
+      "x": 106.38,
+      "y": 96.69
+    },
+    {
+      "id": "N8",
+      "name": "DeliveryPoint_N8",
+      "type": "delivery_point",
+      "x": 132.88,
+      "y": 154.68
+    },
+    {
+      "id": "N9",
+      "name": "DeliveryPoint_N9",
+      "type": "delivery_point",
+      "x": 171.21,
+      "y": 115.97
+    },
+    {
+      "id": "N10",
+      "name": "DeliveryPoint_N10",
+      "type": "delivery_point",
+      "x": 68.21,
+      "y": 93.03
+    },
+    {
+      "id": "N11",
+      "name": "DeliveryPoint_N11",
+      "type": "delivery_point",
+      "x": 125.37,
+      "y": 53.47
+    },
+    {
+      "id": "N12",
+      "name": "DeliveryPoint_N12",
+      "type": "delivery_point",
+      "x": 57.74,
+      "y": 158.98
+    },
+    {
+      "id": "N13",
+      "name": "Hub_C1",
+      "type": "hub",
+      "x": 217.53,
+      "y": 112.7
+    },
+    {
+      "id": "N14",
+      "name": "Warehouse_C1",
+      "type": "warehouse",
+      "x": 224.09,
+      "y": 136.27
+    },
+    {
+      "id": "N15",
+      "name": "DeliveryPoint_N15",
+      "type": "delivery_point",
+      "x": 153.45,
+      "y": 101.69
+    },
+    {
+      "id": "N16",
+      "name": "DeliveryPoint_N16",
+      "type": "delivery_point",
+      "x": 203.18,
+      "y": 145.71
+    },
+    {
+      "id": "N17",
+      "name": "DeliveryPoint_N17",
+      "type": "delivery_point",
+      "x": 222.71,
+      "y": 70.18
+    },
+    {
+      "id": "N18",
+      "name": "DeliveryPoint_N18",
+      "type": "delivery_point",
+      "x": 197.26,
+      "y": 65.97
+    },
+    {
+      "id": "N19",
+      "name": "DeliveryPoint_N19",
+      "type": "delivery_point",
+      "x": 180.0,
+      "y": 47.7
+    },
+    {
+      "id": "N20",
+      "name": "DeliveryPoint_N20",
+      "type": "delivery_point",
+      "x": 164.67,
+      "y": 117.31
+    },
+    {
+      "id": "N21",
+      "name": "DeliveryPoint_N21",
+      "type": "delivery_point",
+      "x": 211.13,
+      "y": 119.14
+    },
+    {
+      "id": "N22",
+      "name": "DeliveryPoint_N22",
+      "type": "delivery_point",
+      "x": 218.13,
+      "y": 90.1
+    },
+    {
+      "id": "N23",
+      "name": "DeliveryPoint_N23",
+      "type": "delivery_point",
+      "x": 251.28,
+      "y": 41.21
+    },
+    {
+      "id": "N24",
+      "name": "DeliveryPoint_N24",
+      "type": "delivery_point",
+      "x": 205.63,
+      "y": 94.42
+    },
+    {
+      "id": "N25",
+      "name": "DeliveryPoint_N25",
+      "type": "delivery_point",
+      "x": 199.06,
+      "y": 143.1
+    },
+    {
+      "id": "N26",
+      "name": "Hub_C2",
+      "type": "hub",
+      "x": 390.42,
+      "y": 88.35
+    },
+    {
+      "id": "N27",
+      "name": "Warehouse_C2",
+      "type": "warehouse",
+      "x": 408.09,
+      "y": 97.12
+    },
+    {
+      "id": "N28",
+      "name": "DeliveryPoint_N28",
+      "type": "delivery_point",
+      "x": 361.45,
+      "y": 74.01
+    },
+    {
+      "id": "N29",
+      "name": "DeliveryPoint_N29",
+      "type": "delivery_point",
+      "x": 396.15,
+      "y": 102.59
+    },
+    {
+      "id": "N30",
+      "name": "DeliveryPoint_N30",
+      "type": "delivery_point",
+      "x": 386.45,
+      "y": 84.21
+    },
+    {
+      "id": "N31",
+      "name": "DeliveryPoint_N31",
+      "type": "delivery_point",
+      "x": 375.03,
+      "y": 109.01
+    },
+    {
+      "id": "N32",
+      "name": "DeliveryPoint_N32",
+      "type": "delivery_point",
+      "x": 334.29,
+      "y": 76.92
+    },
+    {
+      "id": "N33",
+      "name": "DeliveryPoint_N33",
+      "type": "delivery_point",
+      "x": 433.31,
+      "y": 60.82
+    },
+    {
+      "id": "N34",
+      "name": "DeliveryPoint_N34",
+      "type": "delivery_point",
+      "x": 482.41,
+      "y": 83.61
+    },
+    {
+      "id": "N35",
+      "name": "DeliveryPoint_N35",
+      "type": "delivery_point",
+      "x": 372.59,
+      "y": 69.37
+    },
+    {
+      "id": "N36",
+      "name": "DeliveryPoint_N36",
+      "type": "delivery_point",
+      "x": 368.2,
+      "y": 90.62
+    },
+    {
+      "id": "N37",
+      "name": "DeliveryPoint_N37",
+      "type": "delivery_point",
+      "x": 429.1,
+      "y": 86.4
+    },
+    {
+      "id": "N38",
+      "name": "Hub_C3",
+      "type": "hub",
+      "x": 262.67,
+      "y": 191.27
+    },
+    {
+      "id": "N39",
+      "name": "Warehouse_C3",
+      "type": "warehouse",
+      "x": 262.73,
+      "y": 185.9
+    },
+    {
+      "id": "N40",
+      "name": "DeliveryPoint_N40",
+      "type": "delivery_point",
+      "x": 278.18,
+      "y": 208.8
+    },
+    {
+      "id": "N41",
+      "name": "DeliveryPoint_N41",
+      "type": "delivery_point",
+      "x": 261.34,
+      "y": 224.51
+    },
+    {
+      "id": "N42",
+      "name": "DeliveryPoint_N42",
+      "type": "delivery_point",
+      "x": 257.43,
+      "y": 229.03
+    },
+    {
+      "id": "N43",
+      "name": "DeliveryPoint_N43",
+      "type": "delivery_point",
+      "x": 247.64,
+      "y": 199.49
+    },
+    {
+      "id": "N44",
+      "name": "DeliveryPoint_N44",
+      "type": "delivery_point",
+      "x": 293.57,
+      "y": 204.09
+    },
+    {
+      "id": "N45",
+      "name": "DeliveryPoint_N45",
+      "type": "delivery_point",
+      "x": 294.96,
+      "y": 211.42
+    },
+    {
+      "id": "N46",
+      "name": "DeliveryPoint_N46",
+      "type": "delivery_point",
+      "x": 306.85,
+      "y": 193.65
+    },
+    {
+      "id": "N47",
+      "name": "DeliveryPoint_N47",
+      "type": "delivery_point",
+      "x": 311.89,
+      "y": 215.76
+    },
+    {
+      "id": "N48",
+      "name": "DeliveryPoint_N48",
+      "type": "delivery_point",
+      "x": 177.12,
+      "y": 250.04
+    },
+    {
+      "id": "N49",
+      "name": "DeliveryPoint_N49",
+      "type": "delivery_point",
+      "x": 259.49,
+      "y": 231.54
+    }
+  ],
+  "edges": [
+    {
+      "u": "N0",
+      "v": "N3",
+      "weight": 2.06,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N0",
+      "v": "N1",
+      "weight": 10.53,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N0",
+      "v": "N5",
+      "weight": 13.6,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N0",
+      "v": "N4",
+      "weight": 15.3,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N1",
+      "v": "N7",
+      "weight": 6.76,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N1",
+      "v": "N3",
+      "weight": 12.21,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N1",
+      "v": "N5",
+      "weight": 17.43,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N2",
+      "v": "N6",
+      "weight": 8.32,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N2",
+      "v": "N4",
+      "weight": 21.68,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N2",
+      "v": "N3",
+      "weight": 30.48,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N12",
+      "v": "N2",
+      "weight": 32.09,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N3",
+      "v": "N4",
+      "weight": 14.68,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N3",
+      "v": "N5",
+      "weight": 14.93,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N4",
+      "v": "N5",
+      "weight": 14.11,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N10",
+      "v": "N4",
+      "weight": 21.5,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N10",
+      "v": "N5",
+      "weight": 14.76,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N12",
+      "v": "N6",
+      "weight": 26.75,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N4",
+      "v": "N6",
+      "weight": 29.78,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N3",
+      "v": "N6",
+      "weight": 37.1,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N0",
+      "v": "N7",
+      "weight": 15.76,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N3",
+      "v": "N7",
+      "weight": 16.95,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N5",
+      "v": "N7",
+      "weight": 24.19,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N20",
+      "v": "N8",
+      "weight": 49.06,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N8",
+      "v": "N9",
+      "weight": 54.48,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N6",
+      "v": "N8",
+      "weight": 56.75,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N15",
+      "v": "N8",
+      "weight": 56.84,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N20",
+      "v": "N9",
+      "weight": 6.68,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N15",
+      "v": "N9",
+      "weight": 22.79,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N25",
+      "v": "N9",
+      "weight": 38.88,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N21",
+      "v": "N9",
+      "weight": 40.05,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N0",
+      "v": "N10",
+      "weight": 28.05,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N10",
+      "v": "N3",
+      "weight": 29.08,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N11",
+      "v": "N7",
+      "weight": 47.21,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N1",
+      "v": "N11",
+      "weight": 50.64,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N11",
+      "v": "N19",
+      "weight": 54.93,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N11",
+      "v": "N15",
+      "weight": 55.8,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N12",
+      "v": "N4",
+      "weight": 52.14,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N12",
+      "v": "N3",
+      "weight": 62.55,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N13",
+      "v": "N21",
+      "weight": 9.08,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N13",
+      "v": "N24",
+      "weight": 21.81,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N13",
+      "v": "N22",
+      "weight": 22.61,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N13",
+      "v": "N14",
+      "weight": 24.47,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N14",
+      "v": "N21",
+      "weight": 21.48,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N14",
+      "v": "N16",
+      "weight": 22.94,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N14",
+      "v": "N25",
+      "weight": 25.95,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N15",
+      "v": "N20",
+      "weight": 19.23,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N15",
+      "v": "N7",
+      "weight": 47.33,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N15",
+      "v": "N24",
+      "weight": 52.68,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N16",
+      "v": "N25",
+      "weight": 4.88,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N16",
+      "v": "N21",
+      "weight": 27.73,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N13",
+      "v": "N16",
+      "weight": 35.99,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N17",
+      "v": "N22",
+      "weight": 20.44,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N17",
+      "v": "N18",
+      "weight": 25.8,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N17",
+      "v": "N24",
+      "weight": 29.65,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N17",
+      "v": "N23",
+      "weight": 40.69,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N18",
+      "v": "N19",
+      "weight": 25.13,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N18",
+      "v": "N24",
+      "weight": 29.66,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N18",
+      "v": "N22",
+      "weight": 31.9,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N17",
+      "v": "N19",
+      "weight": 48.26,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N19",
+      "v": "N24",
+      "weight": 53.29,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N20",
+      "v": "N25",
+      "weight": 42.99,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N20",
+      "v": "N21",
+      "weight": 46.5,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N21",
+      "v": "N24",
+      "weight": 25.32,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N21",
+      "v": "N25",
+      "weight": 26.83,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N22",
+      "v": "N24",
+      "weight": 13.23,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N21",
+      "v": "N22",
+      "weight": 29.87,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N22",
+      "v": "N23",
+      "weight": 59.07,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N18",
+      "v": "N23",
+      "weight": 59.42,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N23",
+      "v": "N24",
+      "weight": 70.11,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N13",
+      "v": "N25",
+      "weight": 35.57,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N26",
+      "v": "N30",
+      "weight": 5.74,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N26",
+      "v": "N29",
+      "weight": 15.35,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N26",
+      "v": "N27",
+      "weight": 19.73,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N26",
+      "v": "N36",
+      "weight": 22.34,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N27",
+      "v": "N29",
+      "weight": 13.13,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N27",
+      "v": "N37",
+      "weight": 23.59,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N27",
+      "v": "N30",
+      "weight": 25.2,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N28",
+      "v": "N35",
+      "weight": 12.07,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N28",
+      "v": "N36",
+      "weight": 17.93,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N28",
+      "v": "N30",
+      "weight": 27.0,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N28",
+      "v": "N32",
+      "weight": 27.32,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N29",
+      "v": "N30",
+      "weight": 20.78,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N29",
+      "v": "N31",
+      "weight": 22.07,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N30",
+      "v": "N36",
+      "weight": 19.34,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N30",
+      "v": "N35",
+      "weight": 20.31,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N31",
+      "v": "N36",
+      "weight": 19.62,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N26",
+      "v": "N31",
+      "weight": 25.76,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N30",
+      "v": "N31",
+      "weight": 27.3,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N32",
+      "v": "N36",
+      "weight": 36.57,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N32",
+      "v": "N35",
+      "weight": 39.04,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N31",
+      "v": "N32",
+      "weight": 51.86,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N33",
+      "v": "N37",
+      "weight": 25.92,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N27",
+      "v": "N33",
+      "weight": 44.2,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N26",
+      "v": "N33",
+      "weight": 50.97,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N30",
+      "v": "N33",
+      "weight": 52.37,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N34",
+      "v": "N37",
+      "weight": 53.38,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N33",
+      "v": "N34",
+      "weight": 54.13,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N27",
+      "v": "N34",
+      "weight": 75.54,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N29",
+      "v": "N34",
+      "weight": 88.32,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N35",
+      "v": "N36",
+      "weight": 21.7,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N26",
+      "v": "N35",
+      "weight": 26.04,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N29",
+      "v": "N37",
+      "weight": 36.71,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N26",
+      "v": "N37",
+      "weight": 38.73,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N38",
+      "v": "N39",
+      "weight": 5.37,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N38",
+      "v": "N43",
+      "weight": 17.13,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N38",
+      "v": "N40",
+      "weight": 23.41,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N38",
+      "v": "N41",
+      "weight": 33.27,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N39",
+      "v": "N43",
+      "weight": 20.31,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N39",
+      "v": "N40",
+      "weight": 27.62,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N39",
+      "v": "N44",
+      "weight": 35.8,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N40",
+      "v": "N44",
+      "weight": 16.09,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N40",
+      "v": "N45",
+      "weight": 16.98,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N40",
+      "v": "N41",
+      "weight": 23.03,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N41",
+      "v": "N42",
+      "weight": 5.98,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N41",
+      "v": "N49",
+      "weight": 7.27,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N41",
+      "v": "N43",
+      "weight": 28.53,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N42",
+      "v": "N49",
+      "weight": 3.25,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N40",
+      "v": "N42",
+      "weight": 28.98,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N42",
+      "v": "N43",
+      "weight": 31.12,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N44",
+      "v": "N45",
+      "weight": 7.46,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N44",
+      "v": "N46",
+      "weight": 16.89,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N44",
+      "v": "N47",
+      "weight": 21.72,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N45",
+      "v": "N47",
+      "weight": 17.48,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N45",
+      "v": "N46",
+      "weight": 21.38,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N46",
+      "v": "N47",
+      "weight": 22.68,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N40",
+      "v": "N46",
+      "weight": 32.43,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N40",
+      "v": "N47",
+      "weight": 34.42,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N42",
+      "v": "N48",
+      "weight": 83.01,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N48",
+      "v": "N49",
+      "weight": 84.42,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N43",
+      "v": "N48",
+      "weight": 86.77,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N41",
+      "v": "N48",
+      "weight": 88.0,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N40",
+      "v": "N49",
+      "weight": 29.44,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N43",
+      "v": "N49",
+      "weight": 34.17,
+      "road_type": "arterial"
+    },
+    {
+      "u": "N14",
+      "v": "N39",
+      "weight": 62.9,
+      "road_type": "highway"
+    },
+    {
+      "u": "N23",
+      "v": "N32",
+      "weight": 90.37,
+      "road_type": "highway"
+    }
+  ]
+}

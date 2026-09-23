@@ -1,0 +1,12 @@
+# Core testing & benchmarking
+pytest>=8.0.0
+
+# Data manipulation
+pandas>=2.0.0
+
+# Graph plotting & verification (optional helper / cross-validation)
+networkx>=3.0.0
+matplotlib>=3.8.0
+
+# Geographic visualization (optional map visualization)
+folium>=0.15.0

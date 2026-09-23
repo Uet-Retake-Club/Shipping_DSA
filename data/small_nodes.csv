@@ -1,0 +1,11 @@
+id,name,type,x,y,lat,lon
+H0,Central Hub (Long Bien),hub,50.0,50.0,21.037,105.89
+W1,North Warehouse (Dong Anh),warehouse,50.0,85.0,21.137,105.85
+W2,West Warehouse (Cau Giay),warehouse,15.0,50.0,21.033,105.795
+W3,South Warehouse (Hoang Mai),warehouse,60.0,15.0,20.97,105.86
+D1,Station Soc Son,delivery_point,45.0,105.0,21.26,105.83
+D2,Station Me Linh,delivery_point,75.0,90.0,21.17,105.72
+D3,Station Nam Tu Liem,delivery_point,5.0,60.0,21.01,105.76
+D4,Station Ha Dong,delivery_point,10.0,30.0,20.97,105.77
+D5,Station Thanh Tri,delivery_point,55.0,0.0,20.93,105.84
+D6,Station Gia Lam,delivery_point,85.0,45.0,21.02,105.93
