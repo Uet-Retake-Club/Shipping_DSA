@@ -5,8 +5,10 @@ from typing import Any, Optional
 
 try:
     from src.algorithms.min_heap import MinHeap
+    from src.algorithms.indexed_min_heap import IndexedMinHeap
 except ImportError:
     from min_heap import MinHeap
+    from indexed_min_heap import IndexedMinHeap
 
 
 def lazyPrims(
@@ -105,6 +107,106 @@ def lazyPrims(
     return total_weight, mst_edges, is_connected
 
 
+def eagerPrims(
+    n: Optional[int | list] = None,
+    edges: Optional[list] = None,
+    start: Optional[Any] = None,
+    nodes: Optional[list | set] = None
+) -> tuple[float | int, list[tuple], bool]:
+    """
+    Thuật toán Eager Prim tìm cây khung nhỏ nhất (MST) tối ưu bộ nhớ O(V).
+    Sử dụng IndexedMinHeap hỗ trợ thao tác decrease_key.
+
+    Args:
+        n: Số lượng đỉnh (hoặc danh sách edges nếu gọi rút gọn).
+        edges: Danh sách các cạnh [(u, v, weight), ...].
+        start: Đỉnh xuất phát (mặc định: tự chọn đỉnh đầu tiên).
+        nodes: Danh sách/tập hợp các đỉnh (phát hiện đỉnh cô lập).
+
+    Returns:
+        tuple: (total_weight, mst_edges, is_connected)
+    """
+    if isinstance(n, list) and edges is None:
+        edges = n
+        n = None
+
+    if edges is None:
+        edges = []
+
+    # 1. Thu thập tập hợp đỉnh
+    if nodes is not None:
+        all_nodes = set(nodes)
+    else:
+        all_nodes = set()
+        for u, v, _ in edges:
+            all_nodes.add(u)
+            all_nodes.add(v)
+
+    if isinstance(n, int):
+        total_nodes_count = n
+    else:
+        total_nodes_count = len(all_nodes)
+
+    if total_nodes_count <= 1:
+        return 0, [], True
+
+    if not edges:
+        return 0, [], False
+
+    # 2. Xây dựng danh sách kề
+    adj = defaultdict(list)
+    for u, v, w in edges:
+        adj[u].append((w, v))
+        adj[v].append((w, u))
+
+    # 3. Chọn đỉnh xuất phát
+    if start is None:
+        if all_nodes:
+            start = next(iter(all_nodes))
+        else:
+            start = edges[0][0]
+
+    # dist_to[v]: Trọng số nhỏ nhất hiện tại của cạnh nối v vào MST
+    dist_to = {u: float('inf') for u in all_nodes}
+    # edge_to[v]: Cạnh tốt nhất kết nối v vào MST (u, v, weight)
+    edge_to = {u: None for u in all_nodes}
+    visited = set()
+
+    # IndexedMinHeap lưu các đỉnh chưa vào MST cùng khoảng cách dist_to của chúng
+    pq = IndexedMinHeap()
+
+    dist_to[start] = 0
+    pq.insert(start, 0)
+
+    while not pq.is_empty():
+        # Lấy đỉnh có khoảng cách tới cây khung nhỏ nhất
+        u, _ = pq.pop()
+        visited.add(u)
+
+        # Duyệt các cạnh kề của u
+        for weight, to_node in adj[u]:
+            if to_node in visited:
+                continue
+
+            # Nếu tìm thấy đường nối ngắn hơn tới to_node
+            if weight < dist_to[to_node]:
+                dist_to[to_node] = weight
+                edge_to[to_node] = (u, to_node, weight)
+
+                if pq.contains(to_node):
+                    pq.decrease_key(to_node, weight)
+                else:
+                    pq.insert(to_node, weight)
+
+    # Thu thập các cạnh của MST
+    mst_edges = [edge for node, edge in edge_to.items() if edge is not None]
+    total_weight = sum(weight for _, _, weight in mst_edges)
+    is_connected = (len(mst_edges) == total_nodes_count - 1)
+
+    return total_weight, mst_edges, is_connected
+
+
+
 if __name__ == '__main__':
     # Kiểm tra xem có dữ liệu truyền qua pipe/stdin không
     # Nếu chạy trực tiếp bằng lệnh `python prim.py`, tự động chạy dữ liệu mẫu
@@ -120,12 +222,22 @@ if __name__ == '__main__':
             (4, 5, 5),
         ]
         sample_start = 1
-        cost, tree_edges, connected = lazyPrims(sample_n, sample_edges, sample_start)
-        print(f"Tổng trọng số MST: {cost}")
-        print(f"Các cạnh trong MST: {tree_edges}")
-        print(f"Mạng lưới liên thông hoàn toàn: {connected}")
+
+        cost_lazy, edges_lazy, conn_lazy = lazyPrims(sample_n, sample_edges, sample_start)
+        cost_eager, edges_eager, conn_eager = eagerPrims(sample_n, sample_edges, sample_start)
+
+        print("[LAZY PRIM]")
+        print(f"  Tổng trọng số MST: {cost_lazy}")
+        print(f"  Các cạnh MST: {edges_lazy}")
+        print(f"  Liên thông: {conn_lazy}")
+
+        print("\n[EAGER PRIM (Indexed Min Heap)]")
+        print(f"  Tổng trọng số MST: {cost_eager}")
+        print(f"  Các cạnh MST: {edges_eager}")
+        print(f"  Liên thông: {conn_eager}")
+
+        print(f"\n=> Kết quả hai biến thể khớp nhau 100%: {cost_lazy == cost_eager and conn_lazy == conn_eager}")
     else:
-        # Nhập dữ liệu tự động từ STDIN (phù hợp khi chấm bài/nhập từ file HackerRank)
         first_multiple_input = input().rstrip().split()
         n = int(first_multiple_input[0])
         m = int(first_multiple_input[1])
@@ -133,5 +245,5 @@ if __name__ == '__main__':
         for _ in range(m):
             edges.append(list(map(int, input().rstrip().split())))
         start = int(input().strip())
-        cost, tree_edges, _ = lazyPrims(n, edges, start)
+        cost, tree_edges, _ = eagerPrims(n, edges, start)
         print(cost)

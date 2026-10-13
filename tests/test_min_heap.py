@@ -63,6 +63,36 @@ class TestMinHeap(unittest.TestCase):
         self.assertEqual(res, [1, 2, 2, 5, 5])
 
 
+class TestIndexedMinHeap(unittest.TestCase):
+    def setUp(self):
+        from src.algorithms.indexed_min_heap import IndexedMinHeap
+        self.ipq = IndexedMinHeap()
+
+    def test_insert_and_pop(self):
+        self.ipq.insert("NodeA", 10.0)
+        self.ipq.insert("NodeB", 4.0)
+        self.ipq.insert("NodeC", 7.0)
+
+        self.assertEqual(len(self.ipq), 3)
+        self.assertTrue(self.ipq.contains("NodeB"))
+
+        node, weight = self.ipq.pop()
+        self.assertEqual(node, "NodeB")
+        self.assertEqual(weight, 4.0)
+
+    def test_decrease_key(self):
+        self.ipq.insert("H1", 20)
+        self.ipq.insert("H2", 15)
+        self.ipq.insert("H3", 25)
+
+        # Giảm trọng số của H3 từ 25 xuống 5 -> H3 phải vươn lên thành nhỏ nhất
+        self.ipq.decrease_key("H3", 5)
+
+        top_node, top_weight = self.ipq.pop()
+        self.assertEqual(top_node, "H3")
+        self.assertEqual(top_weight, 5)
+
+
 if __name__ == '__main__':
     unittest.main()
 

@@ -1,5 +1,5 @@
 import unittest
-from src.algorithms.prim import lazyPrims
+from src.algorithms.prim import lazyPrims, eagerPrims
 
 
 class TestPrimAlgorithm(unittest.TestCase):
@@ -97,6 +97,45 @@ class TestPrimAlgorithm(unittest.TestCase):
         self.assertTrue(connected)
         self.assertEqual(weight, 10)
         self.assertEqual(len(mst_edges), 2)
+
+
+class TestEagerPrimAndCrossValidation(unittest.TestCase):
+    def test_eager_prim_basic(self):
+        """Kiểm thử Eager Prim trên đồ thị cơ bản."""
+        n = 5
+        edges = [
+            (1, 2, 3),
+            (1, 3, 4),
+            (2, 3, 1),
+            (2, 4, 7),
+            (3, 5, 2),
+            (4, 5, 5),
+        ]
+        weight, mst_edges, is_connected = eagerPrims(n, edges, start=1)
+        self.assertTrue(is_connected)
+        self.assertEqual(weight, 11)
+        self.assertEqual(len(mst_edges), 4)
+
+    def test_cross_validation_lazy_vs_eager(self):
+        """So sánh đối chiếu chéo: Tổng trọng số giữa Lazy Prim và Eager Prim luôn phải bằng nhau tuyệt đối."""
+        nodes = ["H1", "W1", "W2", "D1", "D2", "D3"]
+        edges = [
+            ("H1", "W1", 12.5),
+            ("H1", "W2", 18.0),
+            ("W1", "W2", 7.2),
+            ("W1", "D1", 5.0),
+            ("W2", "D2", 6.8),
+            ("D1", "D2", 11.0),
+            ("D2", "D3", 3.4),
+            ("H1", "D3", 25.0)
+        ]
+
+        lazy_cost, _, lazy_conn = lazyPrims(nodes=nodes, edges=edges)
+        eager_cost, _, eager_conn = eagerPrims(nodes=nodes, edges=edges)
+
+        self.assertTrue(lazy_conn)
+        self.assertTrue(eager_conn)
+        self.assertEqual(lazy_cost, eager_cost)
 
 
 if __name__ == '__main__':
