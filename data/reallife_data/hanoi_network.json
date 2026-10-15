@@ -1,0 +1,238 @@
+{
+  "network_name": "Hanoi_Metropolitan_Logistics_Network",
+  "description": "Realistic Hanoi logistics network with 3 Mega Hubs, 9 Warehouses/DCs, and 10 Delivery Stations across urban and suburban districts",
+  "num_nodes": 22,
+  "num_edges": 30,
+  "nodes": [
+    {
+      "id": "H01",
+      "name": "Long Bien Mega SOC",
+      "type": "hub",
+      "x": 42.4,
+      "y": 21.3,
+      "lat": 21.0418,
+      "lon": 105.9082
+    },
+    {
+      "id": "H02",
+      "name": "Bac Tu Liem Sorting Hub",
+      "type": "hub",
+      "x": 27.8,
+      "y": 24.7,
+      "lat": 21.0725,
+      "lon": 105.7681
+    },
+    {
+      "id": "H03",
+      "name": "Quang Minh Mega Hub",
+      "type": "hub",
+      "x": 30.6,
+      "y": 38.0,
+      "lat": 21.1924,
+      "lon": 105.7952
+    },
+    {
+      "id": "W01",
+      "name": "Cau Giay DC",
+      "type": "warehouse",
+      "x": 29.3,
+      "y": 20.1,
+      "lat": 21.0315,
+      "lon": 105.7825
+    },
+    {
+      "id": "W02",
+      "name": "Dong Da DC",
+      "type": "warehouse",
+      "x": 33.0,
+      "y": 18.7,
+      "lat": 21.0182,
+      "lon": 105.8174
+    },
+    {
+      "id": "W03",
+      "name": "Ha Dong DC",
+      "type": "warehouse",
+      "x": 28.7,
+      "y": 13.5,
+      "lat": 20.9712,
+      "lon": 105.7765
+    },
+    {
+      "id": "W04",
+      "name": "Hoang Mai DC",
+      "type": "warehouse",
+      "x": 34.4,
+      "y": 12.9,
+      "lat": 20.9658,
+      "lon": 105.8312
+    },
+    {
+      "id": "W05",
+      "name": "Thanh Tri DC",
+      "type": "warehouse",
+      "x": 36.1,
+      "y": 8.2,
+      "lat": 20.9234,
+      "lon": 105.8475
+    },
+    {
+      "id": "W06",
+      "name": "Gia Lam DC",
+      "type": "warehouse",
+      "x": 45.2,
+      "y": 18.0,
+      "lat": 21.0125,
+      "lon": 105.9351
+    },
+    {
+      "id": "W07",
+      "name": "Nam Tu Liem DC",
+      "type": "warehouse",
+      "x": 28.1,
+      "y": 18.5,
+      "lat": 21.0168,
+      "lon": 105.7702
+    },
+    {
+      "id": "W08",
+      "name": "Tay Ho DC",
+      "type": "warehouse",
+      "x": 32.4,
+      "y": 23.5,
+      "lat": 21.0621,
+      "lon": 105.8115
+    },
+    {
+      "id": "W09",
+      "name": "Dong Anh DC",
+      "type": "warehouse",
+      "x": 30.2,
+      "y": 31.6,
+      "lat": 21.1345,
+      "lon": 105.7912
+    },
+    {
+      "id": "D01",
+      "name": "Post Office Hoan Kiem",
+      "type": "delivery_point",
+      "x": 36.7,
+      "y": 19.5,
+      "lat": 21.0255,
+      "lon": 105.8532
+    },
+    {
+      "id": "D02",
+      "name": "Post Office Ba Dinh",
+      "type": "delivery_point",
+      "x": 33.2,
+      "y": 20.4,
+      "lat": 21.0336,
+      "lon": 105.8198
+    },
+    {
+      "id": "D03",
+      "name": "Post Office Hai Ba Trung",
+      "type": "delivery_point",
+      "x": 36.4,
+      "y": 17.3,
+      "lat": 21.0062,
+      "lon": 105.8504
+    },
+    {
+      "id": "D04",
+      "name": "Post Office Thanh Xuan",
+      "type": "delivery_point",
+      "x": 31.8,
+      "y": 16.1,
+      "lat": 20.9951,
+      "lon": 105.8062
+    },
+    {
+      "id": "D05",
+      "name": "Station Soc Son",
+      "type": "delivery_point",
+      "x": 36.2,
+      "y": 45.6,
+      "lat": 21.2612,
+      "lon": 105.8485
+    },
+    {
+      "id": "D06",
+      "name": "Station Hoai Duc",
+      "type": "delivery_point",
+      "x": 21.5,
+      "y": 23.8,
+      "lat": 21.0645,
+      "lon": 105.7072
+    },
+    {
+      "id": "D07",
+      "name": "Station Dan Phuong",
+      "type": "delivery_point",
+      "x": 17.7,
+      "y": 26.3,
+      "lat": 21.0872,
+      "lon": 105.6710
+    },
+    {
+      "id": "D08",
+      "name": "Station Chuong My",
+      "type": "delivery_point",
+      "x": 21.0,
+      "y": 8.8,
+      "lat": 20.9291,
+      "lon": 105.7025
+    },
+    {
+      "id": "D09",
+      "name": "Station Thuong Tin",
+      "type": "delivery_point",
+      "x": 37.6,
+      "y": 2.4,
+      "lat": 20.8715,
+      "lon": 105.8624
+    },
+    {
+      "id": "D10",
+      "name": "Station Hoa Lac",
+      "type": "delivery_point",
+      "x": 3.5,
+      "y": 18.0,
+      "lat": 21.0118,
+      "lon": 105.5342
+    }
+  ],
+  "edges": [
+    {"u": "H03", "v": "H02", "weight": 13.6, "road_type": "highway"},
+    {"u": "H02", "v": "H01", "weight": 15.1, "road_type": "highway"},
+    {"u": "H03", "v": "W09", "weight": 6.5, "road_type": "highway"},
+    {"u": "H03", "v": "D05", "weight": 9.2, "road_type": "arterial"},
+    {"u": "W09", "v": "H02", "weight": 7.3, "road_type": "arterial"},
+    {"u": "H02", "v": "W08", "weight": 6.3, "road_type": "arterial"},
+    {"u": "H02", "v": "W01", "weight": 5.2, "road_type": "arterial"},
+    {"u": "W01", "v": "W07", "weight": 2.1, "road_type": "urban"},
+    {"u": "W07", "v": "W03", "weight": 6.8, "road_type": "arterial"},
+    {"u": "W01", "v": "W02", "weight": 4.9, "road_type": "urban"},
+    {"u": "W08", "v": "D02", "weight": 4.2, "road_type": "urban"},
+    {"u": "D02", "v": "D01", "weight": 4.8, "road_type": "urban"},
+    {"u": "W02", "v": "D04", "weight": 3.2, "road_type": "urban"},
+    {"u": "W02", "v": "D03", "weight": 4.6, "road_type": "urban"},
+    {"u": "D01", "v": "D03", "weight": 3.1, "road_type": "urban"},
+    {"u": "D01", "v": "H01", "weight": 8.3, "road_type": "arterial"},
+    {"u": "H01", "v": "W06", "weight": 4.5, "road_type": "arterial"},
+    {"u": "D04", "v": "W03", "weight": 4.1, "road_type": "urban"},
+    {"u": "W03", "v": "W04", "weight": 6.2, "road_type": "arterial"},
+    {"u": "W04", "v": "W05", "weight": 5.2, "road_type": "arterial"},
+    {"u": "W05", "v": "D09", "weight": 7.4, "road_type": "highway"},
+    {"u": "W03", "v": "D08", "weight": 10.2, "road_type": "arterial"},
+    {"u": "W07", "v": "D06", "weight": 8.2, "road_type": "arterial"},
+    {"u": "D06", "v": "D07", "weight": 5.1, "road_type": "arterial"},
+    {"u": "W07", "v": "D10", "weight": 25.4, "road_type": "highway"},
+    {"u": "H01", "v": "W04", "weight": 9.8, "road_type": "highway"},
+    {"u": "W08", "v": "W01", "weight": 4.5, "road_type": "urban"},
+    {"u": "W06", "v": "W05", "weight": 11.3, "road_type": "arterial"},
+    {"u": "D06", "v": "H02", "weight": 7.1, "road_type": "urban"},
+    {"u": "D08", "v": "W05", "weight": 14.2, "road_type": "arterial"}
+  ]
+}

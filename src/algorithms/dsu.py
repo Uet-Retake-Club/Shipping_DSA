@@ -1,7 +1,7 @@
-
 from __future__ import annotations
 
 from collections.abc import Hashable, Iterable
+from typing import Any, Dict, Optional, Set
 
 
 class DSU:
@@ -15,25 +15,16 @@ class DSU:
             elements: Các phần tử ban đầu. Phần tử trùng nhau chỉ được tính
                 một lần.
         """
-        self._index: dict[Hashable, int] = {}  # phần tử -> chỉ số
-        self._items: list[Hashable] = []  # chỉ số -> phần tử
+        self._index: dict[Hashable, int] = {}
+        self._items: list[Hashable] = []
         self._parent: list[int] = []
         self._rank: list[int] = []
-        self._count = 0  # số tập rời nhau hiện có
+        self._count = 0
         for element in elements:
             self.add(element)
 
     def add(self, element: Hashable) -> bool:
-        """
-        Thêm ``element`` thành một tập mới gồm đúng một phần tử.
-
-        Returns:
-            True nếu phần tử mới được thêm, False nếu nó đã tồn tại từ trước
-            (khi đó không có gì thay đổi).
-
-        Raises:
-            TypeError: nếu ``element`` không hashable.
-        """
+        """Thêm element thành một tập mới; trả về False nếu đã tồn tại."""
         if element in self._index:
             return False
         index = len(self._items)
@@ -45,87 +36,52 @@ class DSU:
         return True
 
     def _root(self, index: int) -> int:
-        """Tìm gốc của ``index`` và nén đường đi (chỉ trên số nguyên)."""
+        """Tìm gốc và nén đường đi bằng vòng lặp."""
         parent = self._parent
-
-        # Lượt 1: đi lên để tìm gốc.
         root = index
         while parent[root] != root:
             root = parent[root]
-
-        # Lượt 2: nén đường đi, trỏ mọi nút trên đường về thẳng gốc.
         while index != root:
             parent[index], index = root, parent[index]
-
         return root
 
     def find(self, element: Hashable) -> Hashable:
-        """
-        Trả về phần tử đại diện (gốc) của tập chứa ``element``.
-
-        Cài đặt bằng vòng lặp hai lượt (không đệ quy) nên an toàn với cây
-        rất sâu, không bao giờ gặp ``RecursionError``.
-
-        Raises:
-            KeyError: nếu ``element`` chưa từng được thêm vào DSU.
-        """
+        """Trả về phần tử đại diện; raises KeyError nếu chưa được thêm."""
         return self._items[self._root(self._index[element])]
 
     def union(self, a: Hashable, b: Hashable) -> bool:
-        """
-        Hợp nhất hai tập chứa ``a`` và ``b`` (Union by Rank).
-
-        Returns:
-            True nếu hai tập khác nhau và đã được hợp nhất.
-            False nếu ``a`` và ``b`` vốn đã cùng một tập (khi đó không thay
-            đổi gì).
-            Với Kruskal, False nghĩa là thêm cạnh ``(a, b)`` sẽ tạo chu trình.
-
-        Raises:
-            KeyError: nếu ``a`` hoặc ``b`` chưa được thêm vào DSU
-                (khi đó không có tập nào bị hợp nhất).
-        """
+        """Hợp nhất hai tập; trả về False nếu chúng đã cùng một tập."""
         root_a = self._root(self._index[a])
         root_b = self._root(self._index[b])
         if root_a == root_b:
             return False
-
         rank = self._rank
-        # Đảm bảo root_a có hạng lớn hơn hoặc bằng; root_b sẽ bị gắn vào.
         if rank[root_a] < rank[root_b]:
             root_a, root_b = root_b, root_a
-
         self._parent[root_b] = root_a
         if rank[root_a] == rank[root_b]:
-            # Hai cây cao bằng nhau: cây mới cao hơn đúng một bậc.
             rank[root_a] += 1
-
         self._count -= 1
         return True
 
     def connected(self, a: Hashable, b: Hashable) -> bool:
-        """Kiểm tra ``a`` và ``b`` có cùng một tập hay không."""
+        """Kiểm tra hai phần tử có cùng một tập hay không."""
         return self._root(self._index[a]) == self._root(self._index[b])
 
     @property
     def count(self) -> int:
-        """Số tập rời nhau hiện có (với đồ thị: số thành phần liên thông)."""
+        """Số tập rời nhau hiện có."""
         return self._count
 
     def components(self) -> list[list[Hashable]]:
-        """
-        Trả về danh sách các tập, mỗi tập là danh sách các phần tử của nó.
-
-        Thứ tự có tính xác định: các phần tử giữ thứ tự được thêm vào, và các
-        tập xếp theo phần tử xuất hiện sớm nhất của mỗi tập.
-        """
+        """Trả về các tập theo thứ tự phần tử được thêm vào."""
         groups: dict[int, list[Hashable]] = {}
         for index, item in enumerate(self._items):
             groups.setdefault(self._root(index), []).append(item)
         return list(groups.values())
 
     def __len__(self) -> int:
-        """Tổng số phần tử (không phải số tập)."""
+        """Tổng số phần tử."""
         return len(self._items)
 
     def __contains__(self, element: Hashable) -> bool:
@@ -133,3 +89,65 @@ class DSU:
 
     def __repr__(self) -> str:
         return f"DSU(elements={len(self)}, sets={self._count})"
+
+
+class DisjointSetUnion:
+    """DSU tương thích với API được Boruvka sử dụng."""
+
+    def __init__(self, elements: Optional[Iterable[Any]] = None) -> None:
+        self.parent: Dict[Any, Any] = {}
+        self.rank: Dict[Any, int] = {}
+        self.num_sets: int = 0
+        if elements is not None:
+            for elem in elements:
+                self.make_set(elem)
+
+    def make_set(self, x: Any) -> None:
+        """Thêm phần tử x vào tập hợp mới nếu chưa tồn tại."""
+        if x not in self.parent:
+            self.parent[x] = x
+            self.rank[x] = 0
+            self.num_sets += 1
+
+    def find(self, x: Any) -> Any:
+        """Tìm gốc và nén đường đi; tự thêm phần tử chưa tồn tại."""
+        if x not in self.parent:
+            self.make_set(x)
+            return x
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x: Any, y: Any) -> bool:
+        """Hợp nhất hai tập; trả về False nếu chúng đã cùng một tập."""
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
+            return False
+        if self.rank[root_x] < self.rank[root_y]:
+            self.parent[root_x] = root_y
+        elif self.rank[root_x] > self.rank[root_y]:
+            self.parent[root_y] = root_x
+        else:
+            self.parent[root_y] = root_x
+            self.rank[root_x] += 1
+        self.num_sets -= 1
+        return True
+
+    def is_connected(self, x: Any, y: Any) -> bool:
+        """Kiểm tra hai phần tử có cùng thành phần liên thông hay không."""
+        return self.find(x) == self.find(y)
+
+    @property
+    def count(self) -> int:
+        """Số tập rời nhau hiện có."""
+        return self.num_sets
+
+    def get_components(self) -> Dict[Any, Set[Any]]:
+        """Trả về ánh xạ từ gốc tới các phần tử trong thành phần."""
+        components: Dict[Any, Set[Any]] = {}
+        for elem in self.parent:
+            root = self.find(elem)
+            components.setdefault(root, set()).add(elem)
+        return components
+
