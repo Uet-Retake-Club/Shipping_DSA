@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Delivery Network Design Using MST | Minimal Presentation</title>
+  <meta name="description" content="Slide thuyết trình đề tài Thiết kế mạng lưới giao vận thông minh bằng Cây bao trùm nhỏ nhất (MST) - Môn Cấu trúc dữ liệu & Giải thuật. Phong cách tối giản (Minimalism).">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Minimal Header -->
+  <header class="top-header">
+    <div class="brand-section">
+      <span class="brand-mono">SHIPPING_DSA</span>
+      <span class="brand-divider"></span>
+      <span class="brand-sub">Minimum Spanning Tree & Logistics</span>
+    </div>
+
+    <div class="header-center">
+      <!-- Presentation Timer -->
+      <div class="timer-widget" id="timerWidget" title="Thời gian thuyết trình">
+        <span>TIME</span>
+        <span id="timerDisplay" style="color: var(--text-1); font-weight: 500;">00:00</span>
+        <button class="timer-btn" id="toggleTimerBtn" title="Tạm dừng / Tiếp tục">⏸</button>
+        <button class="timer-btn" id="resetTimerBtn" title="Đặt lại đồng hồ">↺</button>
+      </div>
+
+      <!-- Slide Indicator -->
+      <div class="slide-indicator">
+        SLIDE <strong id="currentSlideNum">01</strong> / <span id="totalSlideNum">12</span>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="minimal-btn" id="toggleNotesBtn" title="Ghi chú người thuyết trình (Phím S)">[ NOTES ]</button>
+      <button class="minimal-btn" id="toggleOverviewBtn" title="Tổng quan các slide (Phím O)">[ OVERVIEW ]</button>
+      <button class="minimal-btn" id="fullscreenBtn" title="Toàn màn hình (Phím F)">[ FULLSCREEN ]</button>
+    </div>
+  </header>
+
+  <!-- Main Presentation Canvas -->
+  <main class="presentation-viewport">
+
+    <!-- SLIDE 1: HERO TITLE -->
+    <section class="slide active" id="slide-1">
+      <div class="hero-wrapper">
+        <div class="hero-meta-tag">
+          <span>DATA STRUCTURES & ALGORITHMS</span> / <span>GRAPH THEORY</span> / <span>PYTHON 3.15</span>
+        </div>
+
+        <h1 class="hero-heading">
+          Smart Delivery Network Design Using MST
+        </h1>
+
+        <p class="hero-desc">
+          Tối ưu hóa và quy hoạch mạng lưới giao vận bưu chính bằng Cây bao trùm nhỏ nhất (Minimum Spanning Tree) qua ba giải thuật Borůvka, Kruskal và Prim.
+        </p>
+
+        <div class="hero-team-grid">
+          <div class="team-item">
+            <div class="team-role">Role 01</div>
+            <div class="team-name">Nhóm Trưởng & Điều Phối</div>
+          </div>
+          <div class="team-item">
+            <div class="team-role">Role 02</div>
+            <div class="team-name">Nghiên Cứu Thuật Toán</div>
+          </div>
+          <div class="team-item">
+            <div class="team-role">Role 03</div>
+            <div class="team-name">Mô Hình Đồ Thị & Dữ Liệu</div>
+          </div>
+          <div class="team-item">
+            <div class="team-role">Role 04</div>
+            <div class="team-name">Backend Kruskal + DSU</div>
+          </div>
+          <div class="team-item">
+            <div class="team-role">Role 05</div>
+            <div class="team-name">Backend Prim + Min-Heap</div>
+          </div>
+          <div class="team-item">
+            <div class="team-role">Role 06</div>
+            <div class="team-name">Trực Quan Hóa & Benchmark</div>
+          </div>
+        </div>
+
+        <button class="btn-minimal-primary" onclick="nextSlide()">
+          Bắt đầu báo cáo <span>→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: PROBLEM STATEMENT -->
+    <section class="slide" id="slide-2">
+      <div class="slide-header">
+        <div class="slide-category">01 / Bối cảnh & Đặt vấn đề</div>
+        <h2 class="slide-title">Thách Thức Trong Quy Hoạch Hạ Tầng Vận Tải</h2>
+        <p class="slide-subtitle">Chi phí xây dựng và duy trì hạ tầng vận tải giữa các kho bãi tăng vọt nếu thiếu quy hoạch cấu trúc.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-num">01 / COMPLEXITY</div>
+          <h3 class="card-title">Bùng Nổ Chi Phí Mạng Lưới</h3>
+          <p class="card-desc">
+            Nếu kết nối toàn bộ mọi cặp kho bãi với nhau (Full Mesh), số lượng tuyến đường sẽ tăng theo cấp số nhân:
+            <span class="math-pill" style="margin-top: 8px; display: inline-block;">
+              <span class="math"><i>V</i>(<i>V</i> − 1) / 2 ≈ <i>O</i>(<i>V</i><sup>2</sup>)</span>
+            </span>.
+            Ngân sách đầu tư và bảo trì tuyến đường độc quyền trở nên bất khả thi.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-num">02 / CONNECTIVITY</div>
+          <h3 class="card-title">Đảm Bảo Tính Liên Thông 100%</h3>
+          <p class="card-desc">
+            Mạng lưới phải bảo đảm rằng bưu phẩm gửi từ bất kỳ bưu cục nào cũng có thể luân chuyển tới mọi điểm nút khác trong hệ thống mà không tồn tại các thành phần cô lập.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-num">03 / OBJECTIVE</div>
+          <h3 class="card-title">Giải Pháp MST Cốt Lõi</h3>
+          <p class="card-desc">
+            Tìm tập hợp đúng <span class="math"><i>V</i> − 1</span> tuyến đường huyết mạch, loại bỏ triệt để chu trình dư thừa sao cho <strong>tổng chi phí đầu tư hạ tầng toàn mạng lưới đạt giá trị tối thiểu</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 18px;">
+        <div class="card-num">COMPARATIVE SCOPE</div>
+        <div class="grid-3" style="font-size: 0.88rem; color: var(--text-2); line-height: 1.6;">
+          <div>• <strong>MST (Bài toán này):</strong> Tối ưu hóa tổng chi phí xây dựng hạ tầng cố định cho toàn bộ mạng lưới.</div>
+          <div>• <strong>Dijkstra:</strong> Tìm hành trình ngắn nhất cho một bưu phẩm cụ thể đi từ điểm A đến điểm B.</div>
+          <div>• <strong>TSP (Salesperson):</strong> Lập lộ trình cho một xe đi qua tất cả các điểm rồi quay về (NP-hard).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: GRAPH MODELING & DATA SPEC -->
+    <section class="slide" id="slide-3">
+      <div class="slide-header">
+        <div class="slide-category">02 / Mô hình hóa & Dữ liệu</div>
+        <h2 class="slide-title">Mô Hình Đồ Thị Logistics & Khoảng Cách GPS</h2>
+        <p class="slide-subtitle">Chuẩn hóa cấu trúc đồ thị vô hướng có trọng số <span class="math"><i>G</i> = (<i>V</i>, <i>E</i>)</span> dựa trên tọa độ địa lý thực tế.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-num">NODES & EDGES SPECIFICATION</div>
+          <h3 class="card-title">Phân Tầng Điểm Nút (<span class="math"><i>V</i></span>)</h3>
+          <ul class="minimal-list" style="margin-top: 12px;">
+            <li class="minimal-list-item">
+              <span class="list-num">01.</span>
+              <div>
+                <strong>Central Mega Hub (Kho tổng):</strong> Nút trung tâm tiếp nhận hàng liên tỉnh (Long Biên Mega SOC, Bắc Từ Liêm Hub).
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">02.</span>
+              <div>
+                <strong>Regional Warehouse / DC (Kho trung chuyển):</strong> Phân phối hàng cấp quận huyện (Cầu Giấy DC, Đống Đa DC).
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">03.</span>
+              <div>
+                <strong>Delivery Station (Bưu cục phát):</strong> Điểm giao nhận chặng cuối (Last-mile delivery points).
+              </div>
+            </li>
+          </ul>
+
+          <div style="margin-top: 20px; font-size: 0.88rem; color: var(--text-3);">
+            Trọng số tuyến đường: <span class="math"><i>w</i>(<i>u</i>, <i>v</i>) = Distance(<i>u</i>, <i>v</i>) × Cost_Factor(Road_Type)</span>.
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-num">SPHERICAL DISTANCE</div>
+            <h3 class="card-title">Công Thức Mặt Cầu Haversine</h3>
+            <p class="card-desc" style="margin-bottom: 10px;">
+              Tránh sai số lớn của khoảng cách Euclid phẳng trên bề mặt Trái Đất (<span class="math"><i>R</i> ≈ 6371 km</span>):
+            </p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <span>haversine.py</span>
+                <span>Python</span>
+              </div>
+              <div class="code-content"><span class="code-keyword">def</span> <span class="code-func">haversine_distance</span>(lat1, lon1, lat2, lon2):
+    phi1, phi2 = radians(lat1), radians(lat2)
+    dphi = radians(lat2 - lat1)
+    dlambda = radians(lon2 - lon1)
+    a = sin(dphi/2)**2 + cos(phi1)*cos(phi2)*sin(dlambda/2)**2
+    <span class="code-keyword">return</span> 2 * 6371.0 * asin(sqrt(a))</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--text-3);">
+            Dataset thực tế: <span class="tag-clean">hanoi_network.json</span> (22 đỉnh, 30 cạnh kết nối bưu chính).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: THEORETICAL FOUNDATIONS -->
+    <section class="slide" id="slide-4">
+      <div class="slide-header">
+        <div class="slide-tagline" style="display:none;"></div>
+        <div class="slide-category">03 / Cơ sở lý thuyết</div>
+        <h2 class="slide-title">Các Tính Chất Toán Học Nền Tảng Của MST</h2>
+        <p class="slide-subtitle">Nguyên lý bảo đảm tính tối ưu toàn cục cho các thuật toán Tham lam (Greedy Choice Property).</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-num">PROPERTY 01</div>
+          <h3 class="card-title">Tính Chất Lát Cắt (Cut Property)</h3>
+          <p class="card-desc">
+            Với bất kỳ lát cắt <span class="math">(<i>S</i>, <i>V</i> \ <i>S</i>)</span> nào chia đôi tập đỉnh của đồ thị, <strong>cạnh có trọng số nhỏ nhất băng qua lát cắt đó luôn thuộc về mọi cây khung nhỏ nhất (MST)</strong>.
+          </p>
+          <div style="margin-top: 14px; font-size: 0.85rem; color: var(--text-3); border-left: 2px solid var(--border-light); padding-left: 10px;">
+            Hệ quả: Cả Prim và Borůvka đều liên tục tạo các lát cắt và nạp ngay cạnh nhẹ nhất mà không sợ bị sai lầm cục bộ.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-num">PROPERTY 02</div>
+          <h3 class="card-title">Tính Chất Chu Trình (Cycle Property)</h3>
+          <p class="card-desc">
+            Trong một chu trình bất kỳ của đồ thị, <strong>cạnh có trọng số lớn nhất tuyệt đối sẽ không bao giờ xuất hiện trong bất kỳ cây khung nhỏ nhất nào</strong>.
+          </p>
+          <div style="margin-top: 14px; font-size: 0.85rem; color: var(--text-3); border-left: 2px solid var(--border-light); padding-left: 10px;">
+            Hệ quả: Kruskal duyệt cạnh từ nhẹ đến nặng; khi phát hiện cạnh tạo chu trình, cạnh đó chắc chắn là cạnh nặng nhất chu trình nên loại bỏ an toàn 100%.
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 18px;">
+        <div class="card" style="padding: 16px 20px;">
+          <div class="card-num">COROLLARY 01</div>
+          <h4 style="font-size: 0.95rem; color: var(--text-1); margin-bottom: 4px;">Tính Duy Nhất Của Cây Khung</h4>
+          <p style="font-size: 0.85rem; color: var(--text-2);">
+            Nếu tất cả các cạnh trong đồ thị có trọng số đôi một khác nhau, cây MST là duy nhất. Khi có cạnh trùng trọng số, có thể có nhiều cây nhưng tổng trọng số luôn bằng nhau.
+          </p>
+        </div>
+
+        <div class="card" style="padding: 16px 20px;">
+          <div class="card-num">COROLLARY 02</div>
+          <h4 style="font-size: 0.95rem; color: var(--text-1); margin-bottom: 4px;">Khả Năng Xử Lý Trọng Số Âm</h4>
+          <p style="font-size: 0.85rem; color: var(--text-2);">
+            Cả Kruskal, Prim và Borůvka đều <strong>hoạt động chính xác trên cạnh có trọng số âm</strong> (khác với Dijkstra bị sai do tính chất cộng dồn khoảng cách đường đi).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: BORUVKA ALGORITHM -->
+    <section class="slide" id="slide-5">
+      <div class="slide-header">
+        <div class="slide-category">04 / Thuật toán tiền nhiệm</div>
+        <h2 class="slide-title">Thuật Toán Borůvka (1926) & Tính Song Song</h2>
+        <p class="slide-subtitle">Thuật toán MST đầu tiên trong lịch sử, ra đời phục vụ tối ưu chi phí lưới điện vùng Moravia.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-num">ROUND-BY-ROUND EXECUTION</div>
+          <h3 class="card-title">Nguyên Lý Hoạt Động Theo Vòng</h3>
+          <ul class="minimal-list" style="margin-top: 12px;">
+            <li class="minimal-list-item">
+              <span class="list-num">01.</span>
+              <div>
+                <strong>Khởi tạo:</strong> Mỗi đỉnh là một thành phần liên thông độc lập (<span class="math"><i>V</i></span> components).
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">02.</span>
+              <div>
+                <strong>Tìm kiếm song song:</strong> Trong mỗi vòng, với <em>mọi component</em>, đồng thời tìm cạnh rẻ nhất nối ra ngoài (Cheapest Outgoing Edge).
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">03.</span>
+              <div>
+                <strong>Gộp tập hợp:</strong> Nạp các cạnh rẻ nhất vào cây khung và hợp nhất các component bằng cấu trúc DSU.
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">04.</span>
+              <div>
+                <strong>Dừng:</strong> Khi chỉ còn 1 component (đồ thị liên thông) hoặc không còn cạnh liên kết ngoài (Rừng MST).
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-num">THEORETICAL BOUNDS</div>
+          <h3 class="card-title">Độ Phức Tạp & Tiềm Năng Song Song</h3>
+
+          <div style="margin-top: 12px; padding: 14px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-xs);">
+            <div style="font-size: 0.85rem; color: var(--text-3); margin-bottom: 2px;">SỐ VÒNG LẶP TỐI ĐA</div>
+            <div style="font-size: 1.15rem; color: var(--text-1); font-weight: 600;">
+              <span class="math">Rounds ≤ ⌈log<sub>2</sub> <i>V</i>⌉</span>
+            </div>
+            <div style="font-size: 0.82rem; color: var(--text-3); margin-top: 4px;">
+              Mỗi vòng lặp, mỗi component đều kết nối với ít nhất một cụm khác, do đó số lượng component luôn giảm ít nhất 50%.
+            </div>
+          </div>
+
+          <div style="margin-top: 12px; padding: 14px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-xs);">
+            <div style="font-size: 0.85rem; color: var(--text-3); margin-bottom: 2px;">TỔNG THỜI GIAN CHẠY</div>
+            <div style="font-size: 1.15rem; color: var(--text-1); font-weight: 600;">
+              <span class="math"><i>O</i>(<i>E</i> log <i>V</i>)</span>
+            </div>
+            <div style="font-size: 0.82rem; color: var(--text-3); margin-top: 4px;">
+              Các cụm độc lập hoàn toàn trong mỗi vòng, tạo lợi thế tuyệt đối khi triển khai trên hệ thống phân tán (Distributed / GPU Graph Computing).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: KRUSKAL ALGORITHM & DSU -->
+    <section class="slide" id="slide-6">
+      <div class="slide-header">
+        <div class="slide-category">05 / Thuật toán Kruskal</div>
+        <h2 class="slide-title">Kruskal & Tối Ưu Hóa Disjoint Set Union (DSU)</h2>
+        <p class="slide-subtitle">Chiến lược tham lam theo cạnh kết hợp 2 kỹ thuật tối ưu kinh điển: Path Compression & Union by Rank.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-num">UNION-FIND OPTIMIZATIONS</div>
+          <h3 class="card-title">Cấu Trúc Tự Cài Đặt (No External Libs)</h3>
+          <p class="card-desc" style="margin-bottom: 14px;">
+            Nhóm tự cài đặt cấu trúc DSU từ đầu để kiểm tra chu trình và gộp tập hợp đỉnh trong thời gian gần như hằng số:
+          </p>
+          <ul class="minimal-list">
+            <li class="minimal-list-item">
+              <span class="list-num">01.</span>
+              <div>
+                <strong>Path Compression (Nén đường đi):</strong> Khi gọi <code>find(u)</code>, trỏ trực tiếp nút và các nút cha về nút gốc.
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">02.</span>
+              <div>
+                <strong>Union by Rank (Gộp theo hạng):</strong> Luôn gắn gốc của cây có độ cao nhỏ hơn vào gốc cây cao hơn để tránh thoái hóa.
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">03.</span>
+              <div>
+                <strong>Độ phức tạp Ackermann:</strong> Mỗi thao tác chỉ tốn <span class="math"><i>O</i>(α(<i>V</i>)) ≤ 4 ≈ <i>O</i>(1)</span>.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-num">CORE IMPLEMENTATION</div>
+          <h3 class="card-title">Kruskal Main Loop</h3>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>src/algorithms/kruskal.py</span>
+              <span>Python</span>
+            </div>
+            <div class="code-content"><span class="code-comment"># Sắp xếp toàn bộ cạnh theo trọng số: O(E log E)</span>
+edges.sort(key=<span class="code-keyword">lambda</span> e: e[<span class="code-string">'weight'</span>])
+dsu = DSU(num_nodes)
+mst_edges = []
+
+<span class="code-keyword">for</span> edge <span class="code-keyword">in</span> edges:
+    <span class="code-keyword">if</span> dsu.union(edge[<span class="code-string">'u'</span>], edge[<span class="code-string">'v'</span>]):
+        mst_edges.append(edge)
+        total_weight += edge[<span class="code-string">'weight'</span>]
+        <span class="code-keyword">if</span> len(mst_edges) == num_nodes - 1:
+            <span class="code-keyword">break</span> <span class="code-comment"># Dừng sớm khi đủ cạnh</span></div>
+          </div>
+
+          <div style="margin-top: 14px; font-size: 0.85rem; color: var(--text-3);">
+            Độ phức tạp: <span class="math"><i>O</i>(<i>E</i> log <i>E</i> + <i>E</i> · α(<i>V</i>)) ≈ <i>O</i>(<i>E</i> log <i>V</i>)</span>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: PRIM ALGORITHM & HEAP -->
+    <section class="slide" id="slide-7">
+      <div class="slide-header">
+        <div class="slide-category">06 / Thuật toán Prim</div>
+        <h2 class="slide-title">Prim & Hàng Đợi Ưu Tiên (Lazy vs Eager)</h2>
+        <p class="slide-subtitle">Nuôi lớn một cây liên thông duy nhất từ 1 đỉnh và tối ưu bộ nhớ với IndexedMinHeap.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-num">VARIANT 01 / LAZY PRIM</div>
+          <h3 class="card-title">Sử Dụng MinHeap Thường</h3>
+          <ul class="minimal-list" style="margin-top: 10px;">
+            <li class="minimal-list-item">
+              <span class="list-num">•</span>
+              <div>
+                <strong>Cơ chế:</strong> Khi nạp đỉnh <span class="math"><i>u</i></span> vào cây, đẩy toàn bộ cạnh kề <span class="math">(<i>w</i>, <i>v</i>)</span> vào MinHeap.
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">•</span>
+              <div>
+                <strong>Bỏ qua cạnh cũ:</strong> Khi lấy ra khỏi Heap, nếu đỉnh <span class="math"><i>v</i></span> đã vào cây thì bỏ qua (Lazy deletion).
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">•</span>
+              <div>
+                <strong>Không gian & Thời gian:</strong> Bộ nhớ <span class="math"><i>O</i>(<i>E</i>)</span>, thời gian <span class="math"><i>O</i>(<i>E</i> log <i>E</i>)</span>.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-num">VARIANT 02 / EAGER PRIM</div>
+          <h3 class="card-title">Sử Dụng IndexedMinHeap</h3>
+          <ul class="minimal-list" style="margin-top: 10px;">
+            <li class="minimal-list-item">
+              <span class="list-num">•</span>
+              <div>
+                <strong>Cơ chế:</strong> Chỉ lưu các đỉnh chưa vào cây kèm khoảng cách ngắn nhất hiện tại nối vào cây (<code>dist_to[v]</code>).
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">•</span>
+              <div>
+                <strong>Thao tác <code>decrease_key</code>:</strong> Khi tìm thấy cạnh kề tốt hơn, cập nhật trực tiếp vị trí phần tử trong Heap.
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">•</span>
+              <div>
+                <strong>Không gian & Thời gian:</strong> Bộ nhớ đúng <span class="math"><i>O</i>(<i>V</i>)</span>, thời gian <span class="math"><i>O</i>(<i>E</i> log <i>V</i>)</span>.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 18px; padding: 16px 20px;">
+        <div class="card-num">PRACTICAL ADVANTAGE</div>
+        <p style="font-size: 0.88rem; color: var(--text-2);">
+          Đồ thị luôn là <strong>một cây liên thông duy nhất</strong> ở mọi bước trung gian. Trong logistics thực tế, điều này cho phép đơn vị thi công hoàn thành tuyến nào là có thể đưa vào vận hành ngay tuyến đó mà không phải chờ đợi toàn mạng lưới.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: COMPARISON MATRIX -->
+    <section class="slide" id="slide-8">
+      <div class="slide-header">
+        <div class="slide-category">07 / So sánh & Đánh giá</div>
+        <h2 class="slide-title">Ma Trận So Sánh: Borůvka vs Kruskal vs Prim</h2>
+        <p class="slide-subtitle">Lựa chọn giải thuật tối ưu theo đặc thù mật độ mạng lưới và cấu trúc dữ liệu đầu vào.</p>
+      </div>
+
+      <table class="minimal-table">
+        <thead>
+          <tr>
+            <th>Tiêu Chí So Sánh</th>
+            <th>Borůvka (1926)</th>
+            <th>Kruskal (1956)</th>
+            <th>Prim (1957 - Eager)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hướng tiếp cận</strong></td>
+            <td>Mỗi cụm tự chọn cạnh nhẹ nhất</td>
+            <td>Quét toàn bộ cạnh tăng dần</td>
+            <td>Lớn dần 1 cây từ 1 đỉnh</td>
+          </tr>
+          <tr>
+            <td><strong>Cấu trúc dữ liệu chính</strong></td>
+            <td>DSU + Bảng tra cứu</td>
+            <td>Sắp xếp cạnh + DSU</td>
+            <td>IndexedMinHeap + Danh sách kề</td>
+          </tr>
+          <tr>
+            <td><strong>Thời gian chạy</strong></td>
+            <td><span class="tag-clean"><span class="math"><i>O</i>(<i>E</i> log <i>V</i>)</span></span></td>
+            <td><span class="tag-clean"><span class="math"><i>O</i>(<i>E</i> log <i>E</i>)</span></span></td>
+            <td><span class="tag-clean"><span class="math"><i>O</i>(<i>E</i> log <i>V</i>)</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Bộ nhớ bổ sung</strong></td>
+            <td><span class="math"><i>O</i>(<i>V</i> + <i>E</i>)</span></td>
+            <td><span class="math"><i>O</i>(<i>V</i> + <i>E</i>)</span></td>
+            <td><span class="tag-clean accent"><span class="math"><i>O</i>(<i>V</i>)</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Đồ thị thưa (<span class="math"><i>E</i> ≈ <i>V</i></span>)</strong></td>
+            <td>Tốt</td>
+            <td><strong style="color: var(--text-1);">Tối ưu nhất (Khuyên dùng)</strong></td>
+            <td>Tốt</td>
+          </tr>
+          <tr>
+            <td><strong>Đồ thị dày (<span class="math"><i>E</i> ≈ <i>V</i><sup>2</sup></span>)</strong></td>
+            <td>Trung bình</td>
+            <td>Kém (chi phí sort lớn)</td>
+            <td><strong style="color: var(--text-1);">Tối ưu nhất (Khuyên dùng)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Đồ thị phân mảnh</strong></td>
+            <td>Tự động ra Rừng MST</td>
+            <td>Tự động ra Rừng MST</td>
+            <td>Cần bọc vòng lặp duyệt đỉnh</td>
+          </tr>
+          <tr>
+            <td><strong>Khả năng song song hóa</strong></td>
+            <td><span class="tag-clean accent">Rất cao (Parallel)</span></td>
+            <td>Hạn chế (Tuần tự)</td>
+            <td>Hạn chế (Tuần tự)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 9: INTERACTIVE SIMULATOR -->
+    <section class="slide" id="slide-9">
+      <div class="slide-header">
+        <div class="slide-category">08 / Mô phỏng trực quan</div>
+        <h2 class="slide-title">Mô Phỏng Quá Trình Dựng Cây MST</h2>
+        <p class="slide-subtitle">Quan sát cách Kruskal (DSU) hoặc Prim (Heap) kết nạp và từ chối cạnh theo thời gian thực.</p>
+      </div>
+
+      <div class="simulator-layout">
+        <div class="canvas-panel">
+          <div class="canvas-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>SCHEMATIC (6 NODES)</span>
+              <span class="tag-clean" style="font-size: 0.68rem; color: #93c5fd;">✋ Kéo thả đỉnh</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <button class="minimal-btn" id="resetLayoutBtn" style="padding: 2px 8px; font-size: 0.7rem;" title="Khôi phục tọa độ đỉnh mặc định">[ ↺ Reset Layout ]</button>
+            </div>
+          </div>
+          <svg class="sim-svg" id="simSvg" viewBox="0 0 520 380"></svg>
+          <div class="canvas-footer">
+            <span id="simCanvasStatus">Mẹo: Kéo thả đỉnh để đổi hình dạng đồ thị. Click vào đỉnh để chọn điểm bắt đầu cho Prim.</span>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <div class="sim-controls-card">
+            <div class="card-num">ALGORITHM CONTROLS</div>
+
+            <div class="sim-btn-group">
+              <button class="sim-btn active-algo" id="simKruskalBtn">Kruskal (DSU)</button>
+              <button class="sim-btn" id="simPrimBtn">Prim (Heap)</button>
+            </div>
+
+            <div class="sim-btn-group">
+              <button class="sim-btn primary" id="simStepBtn">Từng bước (Step)</button>
+              <button class="sim-btn" id="simAutoBtn">Tự động</button>
+              <button class="sim-btn" id="simResetBtn">Đặt lại</button>
+            </div>
+
+            <div class="sim-stat-grid">
+              <div class="sim-stat-box">
+                <div class="sim-stat-val" id="simEdgesCount">0 / 5</div>
+                <div class="sim-stat-lbl">Số Cạnh MST</div>
+              </div>
+              <div class="sim-stat-box">
+                <div class="sim-stat-val" id="simWeightVal">0.0</div>
+                <div class="sim-stat-lbl">Tổng Chi Phí</div>
+              </div>
+              <div class="sim-stat-box">
+                <div class="sim-stat-val" id="simCompsVal">6</div>
+                <div class="sim-stat-lbl">Số Cụm DSU</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sim-log-card">
+            <div class="sim-log-header">EXECUTION LOG</div>
+            <div class="sim-log-content" id="simLogContent">
+              <div class="log-item info">> Sẵn sàng chạy mô phỏng. Bấm "Từng bước" để bắt đầu.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: REAL-LIFE CASE STUDY (HANOI LOGISTICS) -->
+    <section class="slide" id="slide-10">
+      <div class="slide-header">
+        <div class="slide-category">09 / Thực nghiệm thực tế</div>
+        <h2 class="slide-title">Case Study: Mạng Lưới Bưu Chính Hà Nội</h2>
+        <p class="slide-subtitle">Đánh giá hiệu quả kinh tế trên mạng lưới gồm 22 điểm nút bưu chính trọng điểm của Thủ đô.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-num">NETWORK TOPOLOGY</div>
+          <h3 class="card-title">Cấu Trúc Mạng Lưới Thực Nghiệm</h3>
+          <p class="card-desc" style="margin-bottom: 14px;">
+            Trích xuất từ tập dữ liệu thực tế <code>data/reallife_data/hanoi_network.json</code>:
+          </p>
+          <ul class="minimal-list">
+            <li class="minimal-list-item">
+              <span class="list-num">01.</span>
+              <div><strong>03 Mega Hubs:</strong> Long Biên Mega SOC, Bắc Từ Liêm Sorting Hub, Quang Minh Mega Hub.</div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">02.</span>
+              <div><strong>09 Warehouses / DCs:</strong> Cầu Giấy, Đống Đa, Hà Đông, Hai Bà Trưng, Thanh Trì, Hoàng Mai, Nam Từ Liêm, Hoài Đức, Gia Lâm.</div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">03.</span>
+              <div><strong>10 Delivery Stations:</strong> Bưu cục phân bổ đều từ Hoàn Kiếm, Ba Đình đến Sóc Sơn, Ba Vì.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-num">QUANTITATIVE RESULTS</div>
+            <h3 class="card-title">Kết Quả Tối Ưu Hóa Định Lượng</h3>
+            
+            <div class="metric-row">
+              <div class="metric-card">
+                <div class="metric-label">Ban đầu</div>
+                <div class="metric-num">30</div>
+                <div style="font-size: 0.8rem; color: var(--text-3);">Chi phí: 184.2</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Sau MST</div>
+                <div class="metric-num">21</div>
+                <div style="font-size: 0.8rem; color: var(--text-3);">Chi phí: 118.6</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Tiết kiệm</div>
+                <div class="metric-num savings">−35.6%</div>
+                <div style="font-size: 0.8rem; color: var(--text-3);">Loại 9 tuyến thừa</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.88rem; color: var(--text-2);">
+            Giảm thiểu 35.6% chi phí đầu tư hạ tầng mà vẫn bảo đảm 100% tính liên thông giữa toàn bộ 22 điểm nút bưu cục.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: TRADE-OFFS & FUTURE WORK -->
+    <section class="slide" id="slide-11">
+      <div class="slide-header">
+        <div class="slide-category">10 / Phản biện & Mở rộng</div>
+        <h2 class="slide-title">Đánh Đổi Thực Tế & Kiến Trúc Bền Vững</h2>
+        <p class="slide-subtitle">Tư duy phản biện kỹ thuật: Giới hạn của mô hình cây và giải pháp trong thực tế doanh nghiệp.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-num">LIMITATIONS OF PURE TREE</div>
+          <h3 class="card-title">Hạn Chế Của Cây Khung MST</h3>
+          <ul class="minimal-list" style="margin-top: 12px;">
+            <li class="minimal-list-item">
+              <span class="list-num">01.</span>
+              <div>
+                <strong>Điểm lỗi đơn lẻ (Single Point of Failure):</strong> Vì là cấu trúc cây, mọi cạnh đều là cầu (Bridge). Nếu một tuyến huyết mạch bị tắc nghẽn, mạng lưới sẽ bị đứt gãy làm đôi.
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">02.</span>
+              <div>
+                <strong>Độ trễ trung chuyển (Hop Count):</strong> MST tối ưu chi phí toàn mạng, nhưng khoảng cách giữa 2 điểm cụ thể có thể phải đi vòng qua nhiều trạm trung gian.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-num">PRACTICAL SOLUTIONS</div>
+          <h3 class="card-title">Giải Pháp Mở Rộng Cho Doanh Nghiệp</h3>
+          <ul class="minimal-list" style="margin-top: 12px;">
+            <li class="minimal-list-item">
+              <span class="list-num">01.</span>
+              <div>
+                <strong>Mạng 2-Cạnh Liên Thông (2-Edge Connected):</strong> Bổ sung thêm các tuyến vành đai (Ring Topology) tại các Mega Hub để phòng ngừa rủi ro đứt gãy.
+              </div>
+            </li>
+            <li class="minimal-list-item">
+              <span class="list-num">02.</span>
+              <div>
+                <strong>Kiến Trúc Hai Tầng (Two-tier Logistics):</strong> Sử dụng MST làm <em>Mạng lưới trục (Backbone Network)</em> giữa các kho, sau đó chạy bài toán TSP / Vehicle Routing Problem (VRP) cho các xe giao hàng chặng cuối.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: CONCLUSION & MOCK DEFENSE Q&A -->
+    <section class="slide" id="slide-12">
+      <div class="slide-header">
+        <div class="slide-category">11 / Tổng kết & Vấn đáp</div>
+        <h2 class="slide-title">Tổng Kết Đề Tài & Bộ Câu Hỏi Phản Biện</h2>
+        <p class="slide-subtitle">Sẵn sàng bảo vệ đề tài trước Giảng viên và Hội đồng phản biện môn học.</p>
+      </div>
+
+      <div class="qa-grid">
+        <div class="qa-card">
+          <div class="qa-question">
+            <span>Q1: Tại sao chọn bài toán MST thay vì Dijkstra hay TSP?</span>
+            <span class="qa-toggle">+</span>
+          </div>
+          <div class="qa-answer">
+            <strong>Đáp:</strong> MST giải quyết bài toán quy hoạch <em>hạ tầng cố định</em> (tổng chi phí kết nối toàn bộ hệ thống nhỏ nhất). Dijkstra chỉ tìm đường đi ngắn nhất giữa 2 điểm cụ thể. TSP là tìm chu trình cho 1 xe đi qua hết các điểm (NP-hard). MST là bước nền tảng để thiết kế mạng lưới trước khi định tuyến bưu phẩm.
+          </div>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-question">
+            <span>Q2: Thuật toán có chạy đúng khi có trọng số âm không?</span>
+            <span class="qa-toggle">+</span>
+          </div>
+          <div class="qa-answer">
+            <strong>Đáp:</strong> <em>Hoàn toàn đúng!</em> Cả Kruskal, Prim và Borůvka đều đúng khi có trọng số âm vì tính chất lát cắt (Cut Property) chỉ so sánh thứ tự hơn kém giữa các trọng số, không phụ thuộc vào dấu. Ngược lại, Dijkstra sẽ bị sai trên cạnh âm do tính chất tích lũy khoảng cách.
+          </div>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-question">
+            <span>Q3: Nếu đồ thị đầu vào bị phân mảnh thì xử lý ra sao?</span>
+            <span class="qa-toggle">+</span>
+          </div>
+          <div class="qa-answer">
+            <strong>Đáp:</strong> Kruskal và Borůvka tự động trả về một <em>Rừng cây bao trùm nhỏ nhất (MST Forest)</em> gồm đúng <span class="math"><i>V</i> − <i>C</i></span> cạnh (với <span class="math"><i>C</i></span> là số thành phần liên thông). Với Prim, nhóm đã bọc thêm vòng lặp duyệt đỉnh để quét qua các thành phần còn lại.
+          </div>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-question">
+            <span>Q4: Hàm Ackermann nghịch đảo trong DSU có ý nghĩa gì?</span>
+            <span class="qa-toggle">+</span>
+          </div>
+          <div class="qa-answer">
+            <strong>Đáp:</strong> <span class="math">α(<i>n</i>)</span> là hàm cực chậm. Với mọi số lượng đỉnh trong vũ trụ thực tế (<span class="math"><i>V</i> &lt; 10<sup>80</sup></span>), ta luôn có <span class="math">α(<i>V</i>) ≤ 4</span>. Nhờ kết hợp đồng thời Path Compression và Union by Rank, mỗi thao tác của DSU đạt thời gian xấp xỉ hằng số <span class="math"><i>O</i>(1)</span>.
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: center; color: var(--text-3); font-size: 0.85rem; font-family: var(--font-mono);">
+        THANK YOU / Q&amp;A DEFENSE READY
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Hairline Progress Track -->
+  <footer class="bottom-nav">
+    <div class="progress-track" id="progressTrack" title="Bấm vào thanh để nhảy nhanh tới slide">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </footer>
+
+  <!-- Floating Navigation Controls -->
+  <aside class="floating-controls">
+    <button class="nav-arrow-btn" id="prevBtn" title="Slide trước (Phím Mũi tên Trái / PageUp)">←</button>
+    <button class="nav-arrow-btn" id="nextBtn" title="Slide sau (Phím Mũi tên Phải / Space)">→</button>
+  </aside>
+
+  <!-- Speaker Notes Modal / Drawer -->
+  <div class="speaker-notes-modal" id="notesModal">
+    <div class="notes-header">
+      <span>SPEAKER NOTES</span>
+      <button class="close-modal-btn" id="closeNotesBtn">✕</button>
+    </div>
+    <div class="notes-body" id="notesBody"></div>
+  </div>
+
+  <!-- Slide Overview Grid Modal -->
+  <div class="overview-modal" id="overviewModal">
+    <div class="overview-header">
+      <h2>Slide Overview</h2>
+      <button class="close-modal-btn" id="closeOverviewBtn">✕</button>
+    </div>
+    <div class="overview-grid" id="overviewGrid"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

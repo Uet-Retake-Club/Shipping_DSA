@@ -1,0 +1,23 @@
+id,name,type,x,y,lat,lon
+H01,Long Bien Mega SOC,hub,42.4,21.3,21.0418,105.9082
+H02,Bac Tu Liem Sorting Hub,hub,27.8,24.7,21.0725,105.7681
+H03,Quang Minh Mega Hub,hub,30.6,38.0,21.1924,105.7952
+W01,Cau Giay DC,warehouse,29.3,20.1,21.0315,105.7825
+W02,Dong Da DC,warehouse,33.0,18.7,21.0182,105.8174
+W03,Ha Dong DC,warehouse,28.7,13.5,20.9712,105.7765
+W04,Hoang Mai DC,warehouse,34.4,12.9,20.9658,105.8312
+W05,Thanh Tri DC,warehouse,36.1,8.2,20.9234,105.8475
+W06,Gia Lam DC,warehouse,45.2,18.0,21.0125,105.9351
+W07,Nam Tu Liem DC,warehouse,28.1,18.5,21.0168,105.7702
+W08,Tay Ho DC,warehouse,32.4,23.5,21.0621,105.8115
+W09,Dong Anh DC,warehouse,30.2,31.6,21.1345,105.7912
+D01,Post Office Hoan Kiem,delivery_point,36.7,19.5,21.0255,105.8532
+D02,Post Office Ba Dinh,delivery_point,33.2,20.4,21.0336,105.8198
+D03,Post Office Hai Ba Trung,delivery_point,36.4,17.3,21.0062,105.8504
+D04,Post Office Thanh Xuan,delivery_point,31.8,16.1,20.9951,105.8062
+D05,Station Soc Son,delivery_point,36.2,45.6,21.2612,105.8485
+D06,Station Hoai Duc,delivery_point,21.5,23.8,21.0645,105.7072
+D07,Station Dan Phuong,delivery_point,17.7,26.3,21.0872,105.6710
+D08,Station Chuong My,delivery_point,21.0,8.8,20.9291,105.7025
+D09,Station Thuong Tin,delivery_point,37.6,2.4,20.8715,105.8624
+D10,Station Hoa Lac,delivery_point,3.5,18.0,21.0118,105.5342
